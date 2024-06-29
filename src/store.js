@@ -1,6 +1,9 @@
 import {reactive} from "vue";
 
 export const store = reactive ({
+
+    linkApi: '',
+    firstLink: 'http://127.0.0.1:8000/api/projects/'
     // contenuto del file reattivo
     // dove ci serve 
     // import {store} from "./store";
