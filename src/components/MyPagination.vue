@@ -28,6 +28,7 @@ export default {
             
         }
     },
+    emits: ['buttonClicked']
 }
 </script>
 

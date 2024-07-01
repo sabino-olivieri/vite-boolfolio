@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-3">
+    <div class="container my-3" v-if="project">
         <h2>{{ project.title }}</h2>
     </div>
 </template>
@@ -19,7 +19,9 @@ import { store } from '../store';
             axios.get(`${store.firstLink}${slug}`).then((resp) => {
                 this.project = resp.data.response;
             }).catch((error) => {
-                
+                if(error.response.status === 404){
+                    this.$router.push({name: 'not-found'});
+                }
             });
         }
     }
