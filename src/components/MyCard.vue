@@ -6,7 +6,7 @@
             <div class="card-body d-flex flex-column justify-content-center">
                 <h5 class="card-title">{{ project.title }}</h5>
                 <div class="d-flex gap-1 my-1">
-                    <span class="badge" :style="{ backgroundColor: technologies.color }" v-for="technologies in project.technologies">
+                    <span class="badge" :style="{ backgroundColor: technologies.color }" v-for="technologies in project.technologies" :key="technologies">
                         {{ technologies.name }}
                     </span>
                 </div>

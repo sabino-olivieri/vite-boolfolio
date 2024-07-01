@@ -8,7 +8,7 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
                 <ul class="navbar-nav gap-3">
-                    <li class="nav-item text-white">
+                    <li class="nav-item">
                         <router-link :to="{name: 'home'}">Home</router-link>
                     </li>
                     <li class="nav-item">

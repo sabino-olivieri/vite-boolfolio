@@ -6,7 +6,10 @@
             </div>
 
             <div class="col-12 col-md-6 col-lg-4" v-for="project in dataProjects.data" :key="project">
-                <MyCard :project="project" />
+                <router-link :to="{name: 'single-project', params: { 'slug': project.slug }}" class="text-decoration-none"> 
+                    <MyCard :project="project" />
+                </router-link>
+                
             </div>
 
             <div class="col-12 d-flex gap-1 justify-content-center" v-if="arrayPage.length > 0">
@@ -38,7 +41,7 @@ export default {
     },
     methods: {
         getProjects() {
-            axios.get('http://127.0.0.1:8000/api/projects/').then((resp) => {
+            axios.get(store.firstLink).then((resp) => {
                 this.dataProjects = resp.data.response;
                 if (resp.data.response.links.length > 3) {
                     this.createArrayPage(resp.data.response.links)
@@ -49,7 +52,6 @@ export default {
             this.arrayPage = links;
             this.arrayPage.shift();
             this.arrayPage.pop();
-            // document.getElementById('go-top').click();
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
