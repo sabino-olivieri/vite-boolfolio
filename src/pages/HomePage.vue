@@ -2,10 +2,10 @@
     <div class="container my-3">
         <div class="row g-3 justify-content-center">
             <div class="col-12 text-center">
-                <h2 id="my-title">Lista progetti</h2> <a href="#my-title" id="go-top"></a>
+                <h2>Lista progetti</h2>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-4" v-for="project in dataProjects.data">
+            <div class="col-12 col-md-6 col-lg-4" v-for="project in dataProjects.data" :key="project">
                 <MyCard :project="project" />
             </div>
 
@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         getProjects() {
-            axios.get('http://127.0.0.1:8000/api/projects/' + this.per_page).then((resp) => {
+            axios.get('http://127.0.0.1:8000/api/projects/').then((resp) => {
                 this.dataProjects = resp.data.response;
                 if (resp.data.response.links.length > 3) {
                     this.createArrayPage(resp.data.response.links)
@@ -49,7 +49,11 @@ export default {
             this.arrayPage = links;
             this.arrayPage.shift();
             this.arrayPage.pop();
-            document.getElementById('go-top').click();
+            // document.getElementById('go-top').click();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
             console.log(this.arrayPage);
         },
         goToPage() {
