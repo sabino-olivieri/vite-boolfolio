@@ -1,17 +1,20 @@
 <template>
 
         <div class="card ms_card h-100">
-            <img :src="project.image ? `${baseUrl}${project.image}` : 'https://placehold.co/800?text=Immagine+non+inserita&font=roboto'"
-                class="card-img-top" alt="...">
-            <div class="card-body d-flex flex-column justify-content-center">
+            <div class="text-center">
+
+                <img :src="project.image ? `${baseUrl}${project.image}` : 'https://placehold.co/800x450?text=Immagine+non+inserita&font=roboto'"
+                    class="card-img-top" alt="..." loading="lazy">
+            </div>
+            <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ project.title }}</h5>
-                <div class="d-flex gap-1 my-1">
+                <div class="d-flex gap-1 my-1 flex-wrap">
                     <span class="badge" :style="{ backgroundColor: technologies.color }" v-for="technologies in project.technologies" :key="technologies">
                         {{ technologies.name }}
                     </span>
                 </div>
 
-                <p class="card-text" v-if="project.description">{{ project.description }}</p>
+                <!-- <p class="card-text" v-if="project.description">{{ project.description }}</p> -->
                 <a :href="project.site_url" class="text-decoration-none" target="_blank" v-if="project.site_url">{{ project.site_url }}</a>
             </div>
         </div>
@@ -44,6 +47,14 @@ export default {
             -1px 0px black;
 
     }
+    .card-img-top {
+        max-width: 350px;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+        object-position: center;
+
+    }
+
 
 }
 </style>
